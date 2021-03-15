@@ -10,24 +10,34 @@ This set of instructions requires that you have
 
 ## Login to IBM Cloud via UI
 
-The easiest way to configure access to an existing OpenShift cluster on IBM Cloud is to follow the instructions in the IBM Cloud UI. Login via the browser **https://cloud.ibm.com** , make sure you have selected the correct IBM Cloud account and navigate to **Navigation (aka Burger) Menu -> OpenShift -> Clusters** . Select the bootcamp cluster provided to you and navigate to the **Access** tab in the OpenShift cluster details view.
+The easiest way to configure access to an existing OpenShift cluster on IBM Cloud is to follow the instructions in the IBM Cloud UI. Login via the browser **https://cloud.ibm.com** , make sure you have selected the correct IBM Cloud account and navigate to **Navigation (aka Burger) Menu -> OpenShift -> Clusters** . Select the bootcamp cluster provided to you and navigate to the **Overview** tab in the OpenShift cluster view. From there select the **OpenShift web console**.
+
+![image](images/lab-02-openshift-access.png)
+
+Within the OpenShift web console select your profile (prefixed by IAM#), then navigate to Copy Login Command.
+This allows you to copy/paste a login command you can use with your OC CLI.
+![image](images/lab-02-openshift-login-command.png)
 
 
-## Connect to IKS cluster
+## Connect to OpenShift cluster with OC CLI
 
-The easiest way to connect is to just copy and past the following two instructions from the Access Tab above if you are leveraging the IBM Cloud Shell. In case you decided for a local CLI install then you also have to run `ibmcloud login`.
-
-- Download the IKS cluster configuration (`ibmcloud ks cluster config --cluster <cluster-id>`)
-- Display the current kubectl configuration (`kubectl config current-context`)
-
-Try to execute `kubectl get nodes` to access details about the Kubernetes Worker Nodes you have access to.
-
+Just copy and paste the login command (token based) into bash.
 ```bash
-$ kubectl get nodes
-NAME            STATUS   ROLES    AGE     VERSION
-10.114.86.229   Ready    <none>   4d20h   v1.18.13+IKS
-10.114.86.232   Ready    <none>   4d20h   v1.18.13+IKS
-10.114.86.239   Ready    <none>   4d20h   v1.18.13+IKS
+$ oc login --token=yourtoken --server=yourserver
+
+Logged into "https://cxyz.eu-de.containers.cloud.ibm.com:30123" as "IAM#watmann@de.ibm.com" using the token provided.
+You have access to 74 projects, the list has been suppressed. You can list all projects with ' projects'
+Using project "default".
 ```
 
-**Very good - now you can execute kubectl commands against your Kubernetes cluster**
+Try to execute `oc get nodes` to access details about the Kubernetes Worker Nodes you have access to.
+
+```bash
+$ oc get nodes
+NAME             STATUS   ROLES           AGE   VERSION
+10.134.237.197   Ready    master,worker   52d   v1.19.0+e49167a
+10.134.237.201   Ready    master,worker   52d   v1.19.0+e49167a
+10.134.237.236   Ready    master,worker   52d   v1.19.0+e49167a
+```
+
+**Very good - now you can execute oc commands against your OpenShift cluster**
