@@ -1,9 +1,9 @@
-# Lab 1: Docker Lab - Slack Survey
+# Lab 1: Podman Lab - Slack Survey
 
 We use beyond poll in Slack to see how far the participants are. We use Public votes and multiple select as poll options.
 
 ```bash
-/poll "Lab 1 Prereq - Docker Lab" "I have Podman up and running" "Nope - I do not have Podman up and running"
+/poll "Lab 1 Prereq - Podman Lab" "I have Podman up and running" "Nope - I do not have Podman up and running"
 ```
 
 ```bash
