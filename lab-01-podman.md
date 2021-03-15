@@ -1,79 +1,77 @@
-# Lab 1 (optional): Docker Introduction
+# Lab 1 (optional): Podman Introduction
 
-⚠️ WARNING: if you are unable to install docker locally, you may skip this lab.
+⚠️ WARNING: if you are unable to install podman locally, you may skip this lab.
 
 ## Prerequisites
 
-This set of instructions requires that Docker is already installed and docker commands can be run from a bash shell. You can get more information at the [Docker website](https://docker.com/get-started).
+This set of instructions requires that podman is already installed and podman commands can be run from a bash shell. You can get more information at the [Podman website](https://podman.io/). The following section gives you a starting point to use podman on top of MacOS ( see also https://abvijaykumar.medium.com/avengers-of-container-world-episode-1-podman-hands-on-f81d8ee93b57 ). We prefer though to leverage the production stream of podman. 
 
-**Note**: This demo assumes that you are running in a "clean" environment. Clean means that you have not used docker with the images in this demo. This is important for someone who is using docker for the first time, so they can see the activity as images are downloaded.
+## Setting Up Podman on MacOS with Vagrant and Virtual Box
 
-Another requirement is to have a way to execute http requests against the local workstation. As we are a bit bash heavy we assume curl here, but any other tool like postman will do the job as well.
+For MacOS these instructions help you setup a running podman environment.
 
-
-## Working with docker
-
-Launch a shell and confirm that docker is installed. The version number isn't particular important.
-
+- Install VirtualBox, e.g. from [VirtualBox Downloads](https://www.virtualbox.org/wiki/Downloads) 
+- Install Vagrant, e.g. from [Vagrant Downloads](https://www.vagrantup.com/downloads)
+- Initialize Vagrant in a new directory
 ```bash
-$ docker -v
-Docker version 19.03.12, build 48a66213fe
+$ vagrant init centos/8
+```
+- Provision the CentOs environment in VirtualBox
+```bash
+$ vagrant up
+```
+- Login to CentOS
+```bash
+$ vagrant ssh
+```
+- Install Podman
+```bash
+$ sudo yum -y install podman
 ```
 
-As with all new computer things, it is obligatory that we start with "hello-world"
+## Working with podman - "Hello World" using tomcat
+
+Launch a shell and confirm that podman is installed. The version number isn't particular important.
 
 ```bash
-$ docker run hello-world
-Unable to find image 'hello-world:latest' locally
-latest: Pulling from library/hello-world
-0e03bdcc26d7: Pull complete
-Digest: sha256:4cf9c47f86df71d48364001ede3a4fcd85ae80ce02ebad74156906caff5378bc
-Status: Downloaded newer image for hello-world:latest
-
-Hello from Docker!
-This message shows that your installation appears to be working correctly.
-
-To generate this message, Docker took the following steps:
- 1. The Docker client contacted the Docker daemon.
- 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
-    (amd64)
- 3. The Docker daemon created a new container from that image which runs the
-    executable that produces the output you are currently reading.
- 4. The Docker daemon streamed that output to the Docker client, which sent it
-    to your terminal.
-
-To try something more ambitious, you can run an Ubuntu container with:
- $ docker run -it ubuntu bash
-
-Share images, automate workflows, and more with a free Docker ID:
- https://hub.docker.com/
-
-For more examples and ideas, visit:
- https://docs.docker.com/get-started/
+$ podman -v
+podman version 2.2.1
 ```
 
-Notice the message Unable to find image 'hello-world:latest' locally. First, you see that the image was automatically downloaded without any additional commands. Second, the version :latest was added to the name of the image. We did not specify a version for this image.
-
-Rerun "hello-world". Notice that the image is not pulled down again. It already exists locally, so it is run.
-
+Search for tomcat
 ```bash
-$ docker run hello-world
-Hello from Docker!
-This message shows that your installation appears to be working correctly.
-[...]
+$ podman search tomcat
 ```
 
-It already exists locally and `docker images` will show us that image.
-
+Login with podman to docker.io
 ```bash
-$ docker images
-REPOSITORY    TAG      IMAGE ID        CREATED        SIZE
-hello-world   latest   bf756fb1ae65    2 mins ago     13.3kB
+$ podman login docker.io
 ```
 
-From where was the hello-world image pulled? Go to https://hub.docker.com/_/hello-world/ (that is an underscore \_ character in the URL) and you can read about this image. Docker Hub is a repository that holds docker images for use. Docker Hub is not the only repository, IBM Cloud can also serve as a docker repository.
+Validate the pull of the tomcat image
+```bash
+$ podman images
 
-This image is atypical. When an image is run, it usually continues to run. The running image is called a container. Let us run a more typical image; this image contains the NoSQL database CouchDB.
+REPOSITORY                TAG     IMAGE ID      CREATED     SIZE
+docker.io/library/tomcat  latest  08efef7ca980  2 days ago  679 MB
+```
+
+Run the image
+```bash
+$ podman run -d --name tomcat-1 -p 8080:8080 tomcat
+```
+Find the container instance
+```bash
+$ podman ps
+```
+
+Stop the container instance and delete the stopped instance.
+```bash
+$ podman stop tomcat-1
+$ podman rm tomcat-1
+```
+
+## Working with podman - Leveraging CouchDB
 
 We use the following parameters in docker run:
 
@@ -82,7 +80,7 @@ We use the following parameters in docker run:
 - -p <host port>:<container port> binds the container to the host port
 
 ```bash
-$ docker run -d -p:5984:5984 -e COUCHDB_USER=admin -e COUCHDB_PASSWORD=password apache/couchdb:latest
+$ podman run -d -p:5984:5984 -e COUCHDB_USER=admin -e COUCHDB_PASSWORD=password apache/couchdb:latest
 Unable to find image 'apache/couchdb:latest' locally
 latest: Pulling from apache/couchdb
 d121f8d1c412: Pull complete
