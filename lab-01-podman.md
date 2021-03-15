@@ -180,7 +180,7 @@ REPOSITORY                   TAG                 IMAGE ID            CREATED    
 docker.io/library/tomcat     latest              08efef7ca980        2 days ago          679 MB
 ```
 
-**Congratulations, you have done your first steps with Docker.**
+**Congratulations, you have done your first steps with Podman.**
 
 
 Optional Lab 1
