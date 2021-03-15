@@ -2,25 +2,20 @@
 
 ## Prerequisites
 
-You can retrieve metadata from your Kubernetes cluster.
+You can retrieve metadata from your OpenShift cluster.
 
 ```bash
-$ kubectl get nodes
-NAME             STATUS   ROLES    AGE     VERSION
-10.134.237.212   Ready    <none>   3h18m   v1.17.11+IKS
-10.134.237.244   Ready    <none>   3h18m   v1.17.11+IKS
-10.134.237.245   Ready    <none>   3h19m   v1.17.11+IKS
+$ oc get nodes
+NAME             STATUS   ROLES           AGE   VERSION
+10.134.237.197   Ready    master,worker   52d   v1.19.0+e49167a
+10.134.237.201   Ready    master,worker   52d   v1.19.0+e49167a
+10.134.237.236   Ready    master,worker   52d   v1.19.0+e49167a
 ```
 
 Make sure everytime you create resources that you
 
-- target the right Kubernetes cluster
-- target the right Kubernetes namespace and set it into your kubectl context
-
-```bash
-ibmcloud ks cluster config --cluster **kubeclusterid**
-kubectl config set-context --current --namespace=dev-**yourinitials**
-```
+- target the right OpenShift cluster
+- target the right OpenShift Project / Kubernetes namespace
 
 ## Supporting Information
 
@@ -31,7 +26,7 @@ Hint: make sure to select **more** on the Kubernetes YAML examples in above supp
 
 ## Challenge to be solved
 
-Create your own Kubernetes namespace and set it into your Kubernetes context.
+Create your own OpenShift project.
 Write a pod definition named yoda-service-pod.yml. Then create a pod in the cluster using this definition to make sure it works.
 
 The specifications of this pod are as follows:
@@ -47,18 +42,19 @@ The specifications of this pod are as follows:
 When you have completed this lab, use the following commands to validate your solution.
 
 ```bash
-$ kubectl get pods -n dev-yourinitials
+$ oc get pods -n dev-yourinitials
 NAME    READY   STATUS    RESTARTS   AGE
 nginx   1/1     Running   0          8s
 
-$ kubectl describe pod nginx -n dev-yourinitials
+$ oc describe pod nginx -n dev-yourinitials
 [...]
 Events:
-  Type    Reason     Age   From                     Message
-  ----    ------     ----  ----                     -------
-  Normal  Scheduled  27s   default-scheduler        Successfully assigned dev-yourinitials/nginx to 10.134.237.244
-  Normal  Pulling    26s   kubelet, 10.134.237.244  Pulling image "bitnami/nginx"
-  Normal  Pulled     20s   kubelet, 10.134.237.244  Successfully pulled image "bitnami/nginx"
-  Normal  Created    20s   kubelet, 10.134.237.244  Created container nginx
-  Normal  Started    20s   kubelet, 10.134.237.244  Started container nginx
+  Type    Reason          Age   From               Message
+  ----    ------          ----  ----               -------
+  Normal  Scheduled       35s   default-scheduler  Successfully assigned dev-gw/nginx to 10.134.237.201
+  Normal  AddedInterface  32s   multus             Add eth0 [172.30.18.150/32]
+  Normal  Pulling         32s   kubelet            Pulling image "bitnami/nginx"
+  Normal  Pulled          23s   kubelet            Successfully pulled image "bitnami/nginx" in 8.925497856s
+  Normal  Created         23s   kubelet            Created container nginx
+  Normal  Started         22s   kubelet            Started container nginx
 ```
