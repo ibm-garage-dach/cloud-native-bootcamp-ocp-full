@@ -45,9 +45,9 @@ Search for tomcat
 $ podman search tomcat
 ```
 
-Login with podman to docker.io using your Docker Hub credentials
+Pull tomcat image
 ```bash
-$ podman login docker.io
+$ podman pull docker.io/library/tomcat
 ```
 
 Validate the pull of the tomcat image
