@@ -1,37 +1,45 @@
 # Lab 1: Podman Introduction
+
 ## Prerequisites
 
 To be able to install and run Podman you need to leverage a Linux distribution or in case of MacOS or Windows use a virtualization product like VirtualBox.
-You can get more information at [Podman Getting Started](https://podman.io/getting-started/installation). 
+You can get more information at [Podman Getting Started](https://podman.io/getting-started/installation).
 
-Make sure to register for a free account at [Docker Hub](https://docker.io). 
+Make sure to register for a free account at [Docker Hub](https://docker.io).
+
 ## Setting Up Podman on MacOS with Vagrant and Virtual Box
 
 This section describe the install of Podman on MacOS leveraging Vagrant and Virtual Box. These instruction are based on https://abvijaykumar.medium.com/avengers-of-container-world-episode-1-podman-hands-on-f81d8ee93b57 - we prefer though to leverage the production stream of podman instead of the Kubic project.
 
-
-- Install VirtualBox, e.g. from [VirtualBox Downloads](https://www.virtualbox.org/wiki/Downloads) 
+- Install VirtualBox, e.g. from [VirtualBox Downloads](https://www.virtualbox.org/wiki/Downloads)
 - Install Vagrant, e.g. from [Vagrant Downloads](https://www.vagrantup.com/downloads)
 - Initialize Vagrant in a new directory
+
 ```bash
 $ vagrant init centos/8
 ```
+
 - Provision the CentOs environment in VirtualBox
+
 ```bash
 $ vagrant up
 ```
+
 - Login to CentOS
+
 ```bash
 $ vagrant ssh
 ```
+
 - Install Podman
+
 ```bash
 $ sudo yum -y install podman
 ```
+
 ## Working with podman - "Hello World" using Tomcat
 
 In this section we will walk through finding an image, pulling it to the local environment, instantiating a container from the image, stopping the container and removing the stopped container.
-
 
 Launch a shell and confirm that podman is installed. The version number isn't particular important.
 
@@ -41,16 +49,19 @@ podman version 2.2.1
 ```
 
 Search for tomcat
+
 ```bash
 $ podman search tomcat
 ```
 
 Pull tomcat image
+
 ```bash
 $ podman pull docker.io/library/tomcat
 ```
 
 Validate the pull of the tomcat image
+
 ```bash
 $ podman images
 
@@ -68,12 +79,15 @@ Create a container based on the image, we use the following parameters:
 ```bash
 $ podman run -d --name tomcat-1 -p 8080:8080 tomcat
 ```
+
 Find the container instance
+
 ```bash
 $ podman ps
 ```
 
 Stop the container instance and delete the stopped instance.
+
 ```bash
 $ podman stop tomcat-1
 $ podman rm tomcat-1
@@ -181,7 +195,6 @@ docker.io/library/tomcat     latest              08efef7ca980        2 days ago 
 ```
 
 **Congratulations, you have done your first steps with Podman.**
-
 
 Optional Lab 1
 
