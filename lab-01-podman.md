@@ -198,4 +198,4 @@ docker.io/library/tomcat     latest              08efef7ca980        2 days ago 
 
 Optional Lab 1
 
-If you want to build your own image you can checkout the **/node_docker** folder in this repository and build + test your own based on a simple Node.JS sample (look into the README for some hints).
+If you want to build your own image you can checkout the **[/node_docker](/node_docker)** folder in this repository and build + test your own based on a simple Node.JS sample (look into the README for some hints).
