@@ -2,15 +2,20 @@
 
 ## Prerequisites
 
-Make sure everytime you create resources that you
-
-- target the right Kubernetes cluster
-- target the right Kubernetes namespace and set it into your kubectl context
+You can retrieve metadata from your OpenShift cluster.
 
 ```bash
-ibmcloud ks cluster config --cluster **kubeclusterid**
-kubectl config set-context --current --namespace=dev-**yourinitials**
+$ oc get nodes
+NAME             STATUS   ROLES           AGE   VERSION
+10.134.237.197   Ready    master,worker   52d   v1.19.0+e49167a
+10.134.237.201   Ready    master,worker   52d   v1.19.0+e49167a
+10.134.237.236   Ready    master,worker   52d   v1.19.0+e49167a
 ```
+
+Make sure everytime you create resources that you
+
+- target the right OpenShift cluster
+- target the right OpenShift Project / Kubernetes namespace
 
 ## Supporting Information
 
@@ -22,7 +27,7 @@ Hint 2: You can create multi-line strings in YAML e.g. with:
 
 ```
 data:
-  my-key: |-
+  filename.cfg: |-
     line.a=1
     line.b=2
 ```
@@ -54,7 +59,7 @@ yoda.strength=10
 To verify your setup is complete, check /etc/yoda-service for the yoda.cfg file and use the cat command to check it’s contents. Afterwards validate whether the value of your Kubernetes secret has made it into the environment variable of the nginx container.
 
 ```bash
-$ kubectl exec -it yoda-service -- /bin/bash
+$ oc exec -it yoda-service -- /bin/bash
 $ cd /etc/yoda-service
 $ cat yoda.cfg
 $ echo $DB_PASSWORD
