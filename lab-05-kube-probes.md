@@ -2,15 +2,20 @@
 
 ## Prerequisites
 
-Make sure everytime you create resources that you
-
-- target the right Kubernetes cluster
-- target the right Kubernetes namespace and set it into your kubectl context
+You can retrieve metadata from your OpenShift cluster.
 
 ```bash
-ibmcloud ks cluster config --cluster **kubeclusterid**
-kubectl config set-context --current --namespace=dev-**yourinitials**
+$ oc get nodes
+NAME             STATUS   ROLES           AGE   VERSION
+10.134.237.197   Ready    master,worker   52d   v1.19.0+e49167a
+10.134.237.201   Ready    master,worker   52d   v1.19.0+e49167a
+10.134.237.236   Ready    master,worker   52d   v1.19.0+e49167a
 ```
+
+Make sure everytime you create resources that you
+
+- target the right OpenShift cluster
+- target the right OpenShift Project / Kubernetes namespace
 
 ## Supporting Information
 
@@ -52,10 +57,10 @@ The folder /energy-shield in this Git repository includes the implementation use
 ### Verification
 
 ```bash
-$ kubectl describe pod/energy-shield-service | grep Readiness
+$ oc describe pod/energy-shield-service | grep Readiness
 Readiness: http-get http://:8080/ready delay=0s timeout=1s period=5s success=1 failure=3
 
-$ kubectl describe pod/energy-shield-service | grep Liveness
+$ oc describe pod/energy-shield-service | grep Liveness
 Liveness: http-get http://:8080/healthz delay=0s timeout=1s period=10s success=1 failure=3
 
 ```
@@ -93,8 +98,8 @@ spec:
 You have different ways how to see the liveness probe failing.
 
 ```bash
-$ kubectl get events --watch
-$ kubectl describe pods/liveness-exec
+$ oc get events --watch
+$ oc describe pods/liveness-exec
 ```
 
 Don't forget to delete the liveness-exec pod after your tests.
