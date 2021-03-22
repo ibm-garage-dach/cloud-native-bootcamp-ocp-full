@@ -2,13 +2,8 @@
 
 Make sure everytime you create resources that you
 
-- target the right Kubernetes cluster
-- target the right Kubernetes namespace and set it into your kubectl context
-
-```bash
-ibmcloud ks cluster config --cluster **kubeclusterid**
-kubectl config set-context --current --namespace=dev-**yourinitials**
-```
+- target the right OpenShift cluster
+- target the right OpenShift Project / Kubernetes namespace
 
 ## Prerequisites
 
