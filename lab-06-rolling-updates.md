@@ -1,11 +1,21 @@
 # Lab 6: Rolling Updates
 
+## Prerequisites
+
+You can retrieve metadata from your OpenShift cluster.
+
+```bash
+$ oc get nodes
+NAME             STATUS   ROLES           AGE   VERSION
+10.134.237.197   Ready    master,worker   52d   v1.19.0+e49167a
+10.134.237.201   Ready    master,worker   52d   v1.19.0+e49167a
+10.134.237.236   Ready    master,worker   52d   v1.19.0+e49167a
+```
+
 Make sure everytime you create resources that you
 
 - target the right OpenShift cluster
 - target the right OpenShift Project / Kubernetes namespace
-
-## Prerequisites
 
 ## Supporting Information
 
