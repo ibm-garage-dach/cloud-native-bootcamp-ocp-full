@@ -2,6 +2,8 @@
 
 ## Prerequisites
 
+**Remove the existing jedi deployment in your namespace before starting this lab.**
+
 You can retrieve metadata from your OpenShift cluster.
 
 ```bash
