@@ -99,7 +99,7 @@ Validate that both Kubernetes services have been created. Both services are with
 Make a note though of the node port - in this example 30879, yours will be different.
 
 ```bash
-$ kubectl get svc
+$ oc get svc
 NAME       TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
 jedi-svc   NodePort    172.21.96.12     <none>        80:30879/TCP   57s
 yoda-svc   ClusterIP   172.21.235.139   <none>        80/TCP         48s
@@ -128,14 +128,14 @@ To validate the communication from jedi pod to yoda-svc we will use a bash shell
 statically namespaced DNS name of the yoda-svc. Remember **servicename.namespace.svc.cluster.local** can be leveraged.
 
 ```bash
-$ kubectl get pods
+$ oc get pods
 NAME                               READY   STATUS    RESTARTS   AGE
 jedi-deployment-6fbb7bf48c-gbdnz   1/1     Running   0          28m
 jedi-deployment-6fbb7bf48c-tr8wk   1/1     Running   0          28m
 yoda-deployment-79bb79465d-6htpn   1/1     Running   0          27m
 yoda-deployment-79bb79465d-fp92x   1/1     Running   0          27m
 
-$ kubectl exec -t -i jedi-deployment-6fbb7bf48c-gbdnz bash
+$ oc exec -t -i jedi-deployment-6fbb7bf48c-gbdnz bash
 I have no name!@jedi-deployment-6fbb7bf48c-gbdnz:/app$
 
 jedi-deployment-6fbb7bf48c-gbdnz:/app$ curl yoda-svc.dev-gw.svc.cluster.local
@@ -165,4 +165,19 @@ Commercial support is available at
 </body>
 </html>
 
+```
+
+### Optional Activity - Create a route
+
+Create a route for the jedi-svc.
+
+```bash
+$ oc expose svc jedi-svc
+route.route.openshift.io/jedi-svc exposed
+```
+
+Get the URL for the route and use curl or your web browser to validate it.
+
+```bash
+$ oc get route
 ```

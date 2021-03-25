@@ -1,1 +1,1 @@
-/poll "Lab 7 Kubernetes Services - Survey" "I have created a fresh yoda and jedi deployment" "I have created the yoda service" "I have created the jedi service" "I have successfully run the validation steps"
+/poll "Lab 7 Kubernetes Services - Survey" "I have created a fresh yoda and jedi deployment" "I have created the yoda service" "I have created the jedi service" "I have successfully run the validation steps" "Optional: I expose an OpenShift route successfully"
