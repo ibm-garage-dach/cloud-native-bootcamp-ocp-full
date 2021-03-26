@@ -1,4 +1,4 @@
-# Cloud Native Bootcamp Labs - OpenShift on IBM Cloud (ROKS)´
+# Cloud Native Bootcamp Labs - OpenShift on IBM Cloud (ROKS)
 
 ## Day 1 - Cloud Native, Container, Docker/Podman, Kubernetes Intro
 
