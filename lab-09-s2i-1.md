@@ -18,7 +18,7 @@ Before you start please make sure you are should logged into the Web Console of 
 
 Browse to [https://github.com/IBM/node-s2i-openshift](https://github.com/IBM/node-s2i-openshift) and click `Fork`:
 
-![Repository](images/lab-09-images/fork-repository.png)
+![Repository](images/lab-09-1-images/fork-repository.png)
 
 If neccessary, log in with your github.com credentials or sign up for a new account.
 
@@ -30,15 +30,15 @@ To deploy your just-forked repository, go to your OpenShift cluster's Web Consol
 
 Click on `+Add` on the top left, then select `From Catalog`:
 
-![Browse the OpenShift Catalog](images/lab-09-images/browse-catalog.png)
+![Browse the OpenShift Catalog](images/lab-09-1-images/browse-catalog.png)
 
 Then filter by `Languages` > `JavaScript` > `Node.js`.
 
-![Add a Node.js S2I Builder to the project](images/lab-09-images/add-nodejs-builder.png)
+![Add a Node.js S2I Builder to the project](images/lab-09-1-images/add-nodejs-builder.png)
 
 Click `Create Application`. This opens the S2I Node.js template:
 
-![Configure the Node.js S2I Builder](images/lab-09-images/configure-nodejs-builder.png)
+![Configure the Node.js S2I Builder](images/lab-09-1-images/configure-nodejs-builder.png)
 
 Fill in the following values:
 
@@ -49,11 +49,11 @@ Fill in the following values:
     * **Name:** `patient-ui`
 1. Advanced Options
     * **Create a route to the application:** [x] should be checked
-    ![Advanced options](images/lab-09-images/advanced-options.png)
+    ![Advanced options](images/lab-09-1-images/advanced-options.png)
     * **Build Configuration:**  
     Here you can specify when new builds should be launched.  
     [x] `Automatically build a new image when the builder image changes` should only be checked. We will start the first build manually and add a trigger in Lab 4:
-    ![Specify the Build Configuration](images/lab-09-images/build-configuration.png)
+    ![Specify the Build Configuration](images/lab-09-1-images/build-configuration.png)
     * **Deployment:**  
     Make sure that the application is automatically deployed when a  
     [x] `New image is available` and the  
@@ -66,19 +66,19 @@ Fill in the following values:
     You can assign labels to Kubernetes resources to organize, group and select them. This is especially useful when working with many resources in the same project.  
 OpenShift will add these labels to all the resources created by this template.
     Add new labels to your application, for example the key `component` and value `frontend`. Please do not change or remove the `app` label:
-    ![Specify Labels](images/lab-09-images/labels.png)
+    ![Specify Labels](images/lab-09-1-images/labels.png)
 
 ### Create the application
 
 Click `Create` to create the patient-ui application.
 
-![The application is b uilding](images/lab-09-images/running.png) ![The application has been created](images/lab-09-images/complete.png)
+![The application is b uilding](images/lab-09-1-images/running.png) ![The application has been created](images/lab-09-1-images/complete.png)
 
 ### Explore the Application
 
 On the project overview page click on your newly created application:
 
-![The application has been created](images/lab-09-images/app-details.png)
+![The application has been created](images/lab-09-1-images/app-details.png)
 
 In the Resources Tab you can see the app's related resources: Pods, Builds, Services and Routes.
 
@@ -88,7 +88,7 @@ Try it out an click on `View Logs`. Now you can see the build process running, i
 
 When the build is completed, make sure that two pods are running, the container is exposing port 8080 and that the service is mapping traffic from port 8080 to 8080. Then click the URL under `Routes` to open your application.
 
-![The application has been created](images/lab-09-images/app-login.png)
+![The application has been created](images/lab-09-1-images/app-login.png)
 
 You can log in with any username and password.
 
@@ -104,11 +104,11 @@ A *build* is the process of creating a runnable container image from application
 
 Click on the `patient-ui` build within the `Builds` section and take some time to explore the tabs and the first build (click on `#1`) and its logs, which help you to troubleshoot build failures:
 
-![Build Logs](images/lab-09-images/build-logs.png)
+![Build Logs](images/lab-09-1-images/build-logs.png)
 
 Browse to the `Builds` section of the OpenShift console and click on `patient-ui` build, then click on the `YAML` tab to view the configuration of the `BuildConfig` resource:
 
-![BuildConfig YAML](images/lab-09-images/buildconfig-yaml.png)
+![BuildConfig YAML](images/lab-09-1-images/buildconfig-yaml.png)
 
 The `BuildConfig` resource describes how container images are built and when these builds are triggered:
 
@@ -123,15 +123,15 @@ OpenShift can create container images from source code without Docker using the 
 
 Having your application's image built, you will now explore where the `patient-ui:latest` image is written to. Therefore click on the left menu `Builds` > `patient-ui` and then select `patient-ui:latest` under `Overview`, `Output To`:
 
-![Image Stream YAML](images/lab-09-images/image-location.png)
+![Image Stream YAML](images/lab-09-1-images/image-location.png)
 
-![Image Stream](images/lab-09-images/image-stream.png)
+![Image Stream](images/lab-09-1-images/image-stream.png)
 
 Here you can see the `ImageStream` resource, which comprises container images identified by *image stream tags*.
 
 Click on `patient-ui` on top and select the `YAML` tab to review the resource configuration of the image stream.
 
-![Image Stream YAML](images/lab-09-images/image-stream-yaml.png)
+![Image Stream YAML](images/lab-09-1-images/image-stream-yaml.png)
 
 Here you can see the information from the previous screen in the YAML resource file: The `ImageStream` resource contains a list of tags with references to the container images.
 
@@ -149,13 +149,13 @@ In a *pod* one or more containers are deployed together on one host, and the sma
 
 On the left menu click on `Advanced` > `Project Details`, in the Section **Inventory** select `Deployment` then click on `patient-ui`
 
-![Deployment Configuration](images/lab-09-images/deployment-configuration.png)
+![Deployment Configuration](images/lab-09-1-images/deployment-configuration.png)
 
 In the `Containers` section you can see that the deployment references the `patient-ui` image of your project, exposes port 8080 and has a 200 MB memory limit.
 
 In the next step we will review the deployment . Therefore scroll up and click again on `YAML`:
 
-![Deployment YAML](images/lab-09-images/deployment-yaml.png)
+![Deployment YAML](images/lab-09-1-images/deployment-yaml.png)
 
 As with the other resources, the `DeploymentConfig` is also specified in a configuration file in which you will find the information you just saw in the Web Console UI:
 
@@ -188,11 +188,11 @@ Now click on the `Events` tab. Here you can see a list of events with created an
 
 Next we will review the pods where your containers run in. Therefore, click the `Pods` tab to open a page with the Pod's details:
 
-![Pod](images/lab-09-images/pods.png)
+![Pod](images/lab-09-1-images/pods.png)
 
 Click on one of the running `patient-ui-...` pods:
 
-![Pod](images/lab-09-images/pod.png)
+![Pod](images/lab-09-1-images/pod.png)
 
 Take some time to explore the tabs – they can help you to troubleshoot applications:
 
@@ -218,11 +218,11 @@ In the `Pods` section you can see the pods to which traffic directed at the `pat
 
 Click on the `patient-ui` in the **Services** section
 
-![Service](images/lab-09-images/service.png)
+![Service](images/lab-09-1-images/service.png)
 
 Click on `YAML` to open the service's configuration:
 
-![Service YAML](images/lab-09-images/service-yaml.png)
+![Service YAML](images/lab-09-1-images/service-yaml.png)
 
 Here you can see that the resource `Service`:
 
@@ -236,13 +236,13 @@ As the `patient-ui` service is only reachable by other pods within the OpenShift
 
 You can open this route by clickin on `Topology` > `patient-ui` got to `Resources` > **Section Routes** `patient-ui`
 
-![Route](images/lab-09-images/route.png)
+![Route](images/lab-09-1-images/route.png)
 
 Here you can see that traffic to the root path (`None`) is directed to the service `patient-ui` at the port named `8080-tcp`.
 
 Again, open the route's configuration by clicking `YAML`:
 
-![Route](images/lab-09-images/route-yaml.png)
+![Route](images/lab-09-1-images/route-yaml.png)
 
 Here you can see that the `Route` resource forwards traffic from `host: patient-...containers.appdomain.cloud` to `kind: Service` with `name: patient-ui` onto `targetPort: 8080-tcp`.
 
