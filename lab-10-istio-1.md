@@ -15,14 +15,17 @@ In Kubernetes, a sidecar is a utility container in the pod, and its purpose is t
     oc new-project bookinfo-jd
     ```
 
-2.  Annotate the bookinfo namespace to enable automatic sidecar injection:
+2.  Make sure your bookinfo-<your initials> project is enrolled in the ServiceMeshMemberRoll resource. If you are not ensuring this, you won't be able to access the bookinfo app due to a missing NetworkPolicy that is created for members.
+    ![](images/lab-10-images/servicemesh_memberrole.png)
+
+3.  Annotate the bookinfo namespace to enable automatic sidecar injection:
 
     ```shell
     oc label namespace bookinfo-<your initials> istio-injection=enabled
     oc label namespace bookinfo-jd istio-injection=enabled
     ```
 
-3.  Validate the namespace is annotated for automatic sidecar injection:
+4.  Validate the namespace is annotated for automatic sidecar injection:
 
     ```shell
     oc get namespace -L istio-injection

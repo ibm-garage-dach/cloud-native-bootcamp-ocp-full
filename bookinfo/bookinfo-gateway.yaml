@@ -35,9 +35,9 @@ spec:
   http:
     - match:
         - uri:
-            prefix: /<your-initials>/
+            prefix: /gw/
       rewrite:
-         uri: /
+        uri: /
       route:
         - destination:
             host: productpage
