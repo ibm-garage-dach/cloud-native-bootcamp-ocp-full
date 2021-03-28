@@ -1,0 +1,38 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: details
+spec:
+  hosts:
+  - details
+  http:
+  - match:
+    - headers:
+        end-user:
+          exact: gamma
+    fault:
+      abort:
+        percentage:
+          value: 100.0
+        httpStatus: 500
+    route:
+    - destination:
+        host: details
+        subset: v1
+  - match:
+    - headers:
+        end-user:
+          exact: delta
+    fault:
+      delay:
+        percentage:
+          value: 100.0
+        fixedDelay: 7s
+    route:
+    - destination:
+        host: details
+        subset: v1
+  - route:
+    - destination:
+        host: details
+        subset: v1

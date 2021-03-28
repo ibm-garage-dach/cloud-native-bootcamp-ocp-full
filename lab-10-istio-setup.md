@@ -1,4 +1,4 @@
-# Lab 10: Installing Istio on Red Hat OpenShift on IBM Cloud (we will do this together **once**)
+# Lab 10 (Setup): Installing Istio on Red Hat OpenShift on IBM Cloud (we will do this together **once**)
 
 ## Install the Operator
 
