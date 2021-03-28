@@ -1,4 +1,4 @@
-# Lab 10 (Part 3): Perform traffic management
+# Lab 10 (Part 4): Perform traffic management
 
 ## Using rules to manage traffic
 
