@@ -8,15 +8,18 @@ An Ingress Gateway resource can be created to allow external requests through th
 
 ### Expose the BookInfo app with Ingress Gateway
 
-1. Take a look at the `bookinfo-gateway.yaml` file and correct `<your-initials>` in the VirtualService section. This will ensure that your applications will receive their own custom URI prefix
+1.  Make sure your bookinfo-<your initials> project is enrolled in the ServiceMeshMemberRoll resource. If you are not ensuring this, you won't be able to access the bookinfo app due to a missing NetworkPolicy that is created for members.
+    ![](images/lab-10-images/servicemesh_memberrole.png)
 
-2. Configure the bookinfo default route with the Istio Ingress Gateway.
+2.  Take a look at the `bookinfo-gateway.yaml` file and correct `<your-initials>` in the VirtualService section. This will ensure that your applications will receive their own custom URI prefix
+
+3.  Configure the bookinfo default route with the Istio Ingress Gateway.
 
 ```shell
 oc create -f bookinfo-gateway.yaml
 ```
 
-3. Get the **ROUTE** of the Istio Ingress Gateway.
+4. Get the **ROUTE** of the Istio Ingress Gateway.
 
 ```shell
 oc get routes -n istio-system istio-ingressgateway
@@ -29,7 +32,7 @@ NAME                   HOST
 istio-ingressgateway   istio-ingressgateway-istio-system.rvennamocpcluster-c8427b5c054eb1823b50328ad3aeeb58-0000.us-south.containers.appdomain.cloud
 ```
 
-4. Make note of the HOST address that you retrieved in the previous step, as it will be used to access the BookInfo app in later parts of the course. Create an environment variable called $INGRESS_HOST with your address.
+5. Make note of the HOST address that you retrieved in the previous step, as it will be used to access the BookInfo app in later parts of the course. Create an environment variable called $INGRESS_HOST with your address.
 
 Example:
 
