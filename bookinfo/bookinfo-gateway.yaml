@@ -35,7 +35,7 @@ spec:
   http:
     - match:
         - uri:
-            prefix: /gw/
+            prefix: /<your-initials>/
       rewrite:
         uri: /
       route:
