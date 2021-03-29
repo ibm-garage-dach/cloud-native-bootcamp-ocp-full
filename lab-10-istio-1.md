@@ -1,6 +1,6 @@
 # Lab 10 (Part 1): Deploy the BookInfo app in to the mesh
 
-The BookInfo app is a sample app for users to leave comments. It consists of a web front end, Redis master for storage, and a replicated set of Redis slaves. We will also integrate the app with Watson Tone Analyzer which detects the sentiment in users' comments and replies with emoticons.
+The BookInfo app is a sample app for users to leave comments. It consists of a web front end, Redis master for storage, and a replicated set of Redis slaves.
 
 ![](images/lab-10-images/withistio.svg)
 
