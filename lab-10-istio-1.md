@@ -16,6 +16,7 @@ In Kubernetes, a sidecar is a utility container in the pod, and its purpose is t
     ```
 
 2.  Make sure your bookinfo-<your initials> project is enrolled in the ServiceMeshMemberRoll resource. If you are not ensuring this, you won't be able to access the bookinfo app due to a missing NetworkPolicy that is created for members. Use the attribute spec - members to add your project.
+    
     ![](images/lab-10-images/servicemesh_memberrole.png)
 
 3.  Annotate the bookinfo namespace to enable automatic sidecar injection:
