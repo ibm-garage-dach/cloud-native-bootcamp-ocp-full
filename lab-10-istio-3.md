@@ -26,9 +26,11 @@ for i in {1..20}; do sleep 0.5; curl $INGRESS_HOST/<your initials>/productpage; 
 4. Select the `istio-system` project (if not already selected)
 5. Under **Networking** -> **Routes**, select the URL next to **grafana**
 6. Click on Home -> Manage -> Istio -> Istio Service Dashboard.
+   
    ![](images/lab-10-images/bookinfo-grafana-navigation.png)
 
 7. Select `bookinfo-<your-initials>` in the Service drop down.
+   
    ![](images/lab-10-images/bookinfo-grafana.png)
 
 This Grafana dashboard provides metrics for each workload. Explore the other dashboards provided as well.
