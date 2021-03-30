@@ -1,0 +1,1 @@
+/poll "Lab 10: Istio Part 1" "I have created my project" "I have added my project to ServiceMeshMemberRoll project list" "i have added required labels to the project" "i have successfully deployed the bookinfo app"
