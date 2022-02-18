@@ -3,39 +3,12 @@
 ## Prerequisites
 
 To be able to install and run Podman you need to leverage a Linux distribution or in case of MacOS or Windows use a virtualization product like VirtualBox.
-You can get more information at [Podman Getting Started](https://podman.io/getting-started/installation).
 
 Make sure to register for a free account at [Docker Hub](https://docker.io).
 
-## Setting Up Podman on MacOS with Vagrant and Virtual Box
+## Setting Up Podman
 
-This section describe the install of Podman on MacOS leveraging Vagrant and Virtual Box. These instruction are based on https://abvijaykumar.medium.com/avengers-of-container-world-episode-1-podman-hands-on-f81d8ee93b57 - we prefer though to leverage the production stream of podman instead of the Kubic project.
-
-- Install VirtualBox, e.g. from [VirtualBox Downloads](https://www.virtualbox.org/wiki/Downloads)
-- Install Vagrant, e.g. from [Vagrant Downloads](https://www.vagrantup.com/downloads)
-- Initialize Vagrant in a new directory
-
-```bash
-$ vagrant init centos/8
-```
-
-- Provision the CentOs environment in VirtualBox
-
-```bash
-$ vagrant up
-```
-
-- Login to CentOS
-
-```bash
-$ vagrant ssh
-```
-
-- Install Podman
-
-```bash
-$ sudo yum -y install podman
-```
+Follow [installation instructions for podman](https://podman.io/getting-started/installation). In case of Windows you'll need a virtualization product like VirtualBox.
 
 ## Working with podman - "Hello World" using Tomcat
 
