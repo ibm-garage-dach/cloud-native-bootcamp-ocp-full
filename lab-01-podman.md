@@ -18,7 +18,7 @@ Launch a shell and confirm that podman is installed. The version number isn't pa
 
 ```bash
 $ podman -v
-podman version 2.2.1
+podman version 3.4.4
 ```
 
 Search for tomcat
