@@ -2,13 +2,11 @@
 
 ## Prerequisites
 
-To be able to install and run Podman you need to leverage a Linux distribution or in case of MacOS or Windows use a virtualization product like VirtualBox.
-
 Make sure to register for a free account at [Docker Hub](https://docker.io).
 
 ## Setting Up Podman
 
-Follow [installation instructions for podman](https://podman.io/getting-started/installation). In case of Windows you'll need a virtualization product like VirtualBox.
+Follow [installation instructions for podman](https://podman.io/getting-started/installation).
 
 ## Working with podman - "Hello World" using Tomcat
 

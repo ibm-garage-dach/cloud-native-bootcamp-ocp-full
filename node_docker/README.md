@@ -1,4 +1,4 @@
-# Optional Lab (building docker image from node.js source)
+# Optional Lab (building container image from node.js source)
 
 
 ### Build a nodejs container image
