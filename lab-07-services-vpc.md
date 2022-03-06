@@ -42,7 +42,7 @@ Examine the two deployments, and create two services that meet the following cri
 
 - The ingress name is jedi-http-ingress.
 - We will start with exposing the jedi-svc via HTTP.
-- Ingress path is "/", Ingress type: "Prefix" and the Ingress host name is: "<dev-yourinitials>.<ocp-cluster-ingress-subdomain>"
+- Ingress path is `"/"`, Ingress type: `"Prefix"` and the Ingress host name is: `"<dev-yourinitials>.<ocp-cluster-ingress-subdomain>"`
 
 
 **yoda-svc**
@@ -124,7 +124,7 @@ jedi-http-ingress   <none>    dev-gw.bootcamp-cluster.eu-de.containers.appdomain
 
 ### Validating internet access through jedi-ingress and jedi-svc into jedi pod.
 
-Accessing "<dev-yourinitials>.<ocp-cluster-ingress-subdomain>" should return an nginx welcome screen.
+Accessing `"<dev-yourinitials>.<ocp-cluster-ingress-subdomain>"` should return an nginx welcome screen.
 
 
 ### Validating pod-to-service access from jedi pod to yoda-svc
@@ -176,6 +176,6 @@ Commercial support is available at
 
 Delete the ingress after you have completed your tests.
 
-### Optional Activity / Homework - Secure the ingress route.
+### Optional Activity - Secure the ingress endpoint
 
-Follow these steps for exposing a public endpoint --> https://cloud.ibm.com/docs/openshift?topic=openshift-ingress-roks4#ingress-roks4-public
+Follow these steps for exposing a public endpoint via the IBM provided TLS certificate: https://cloud.ibm.com/docs/openshift?topic=openshift-ingress-roks4#ingress-roks4-public
