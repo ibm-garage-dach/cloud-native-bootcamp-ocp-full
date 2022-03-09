@@ -10,6 +10,8 @@
 
 - Install local Helm charts with `helm install my-chart-name ./my-chart-dir/`
 - Upgrade local charts with `helm upgrade my-chart-name ./my-chart-dir/`
+- Rollback charts with `helm rollback my-chart-name`
+- Uninstall charts with `helm uninstall my-chart-name`
 - [Helm Command Reference](https://www.ibm.com/cloud/architecture/content/course/helm-fundamentals/helm-commands)
 
 ## Challenges to be solved
