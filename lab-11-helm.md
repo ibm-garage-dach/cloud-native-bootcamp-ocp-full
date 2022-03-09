@@ -28,20 +28,25 @@ helm create <your-initial>-postgresql
 
 This will create a folder with following structure:
 
-- < your-initial >-postgresql/
-- - charts/
-- - templates/
-- - - tests/
-- - - \_helpers.tpl
-- - - deployment.yaml
-- - - hpa.yaml
-- - - ingress.yaml
-- - - NOTES.txt
-- - - service.yaml
-- - - serviceaccount.yaml
-- - .helmignore
-- - Chart.yaml
-- - values.yaml
+
+
+```bash
+└── < your-initial >-postgresql
+|   ├── Chart.yaml
+|   ├── values.yaml
+|   ├── .helmignore
+|   ├── charts
+|   └── templates
+|   |   ├── tests
+|   |   ├── _helpers.tpl
+|   |   ├── deployment.yaml
+|   |   ├── hpa.yaml
+|   |   ├── ingress.yaml
+|   |   ├── NOTES.txt
+|   |   ├── service.yaml
+|   |   └── serviceaccount.yaml
+```
+
 
 Look trough the files, maybe you recognize few resources like Deployment and ServiceAccount that we've seen previously.
 
