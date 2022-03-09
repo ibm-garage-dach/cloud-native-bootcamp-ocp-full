@@ -206,6 +206,50 @@ spec:
 
 We have now created all the pieces required for our Postgresql helm chart, let's install it similarly as we've done it in the beginning of this challege.
 
+## Rollbacks
+
+Let's change something in our `deployment.yaml`! Change name of the deployment to `postgresql-deployment`. Let's also bump the version of our chart, in `Chart.yaml` you'll find field called `version`, update value to be `0.2.0`.
+
+Run `helm list` to see what chart & version we have currently installed
+
+
+| NAME                        | NAMESPACE | REVISION | UPDATED    | STATUS   | CHART                             | APP VERSION |
+| --------------------------- | --------- | -------- | ---------- | -------- | --------------------------------- | ----------- |
+| < your-initial >-postgresql | dev-      | 2        | 2022-01-01 | deployed | < your-initial >-postgresql-0.1.0 | 1.16.0      |
+
+Now let's make an upgrade of our installed helm chart with local changes we've just made. Run `helm install <your-initial>-postgresql ./<your-initial>-postgresql/`. You should see
+
+```
+Release "vd-postgresql" has been upgraded. Happy Helming!
+...
+```
+
+Once upgraded verify in the Openshift UI that those changes are applied. Now if you run `helm list`, you should see that your chart version is bumped to 0.2.0:
+
+
+| NAME                        | NAMESPACE | REVISION | UPDATED    | STATUS   | CHART                             | APP VERSION |
+| --------------------------- | --------- | -------- | ---------- | -------- | --------------------------------- | ----------- |
+| < your-initial >-postgresql | dev-      | 3        | 2022-01-01 | deployed | < your-initial >-postgresql-0.2.0 | 1.16.0      |
+
+Now let's rollback to the previous version with the following command:
+
+```
+helm rollback <your-initial>-postgresql
+```
+
+As a result you should see the following in your terminal:
+
+```
+Rollback was a success! Happy Helming!
+```
+
+If you run `helm list` again, you'll see that the version of the chart was downgraded:
+
+
+| NAME                        | NAMESPACE | REVISION | UPDATED    | STATUS   | CHART                             | APP VERSION |
+| --------------------------- | --------- | -------- | ---------- | -------- | --------------------------------- | ----------- |
+| < your-initial >-postgresql | dev-      | 4        | 2022-01-01 | deployed | < your-initial >-postgresql-0.1.0 | 1.16.0      |
+
 ## Verification
 
 Navigate to the Openshift UI and make sure that all the resources are created and the Postgresql Pod has state "Running". Go to "Logs" inside the postgresql Pod and validate that database system is ready to accept connections. Once validated, delete your helm chart from your Openshift Project.
