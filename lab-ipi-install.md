@@ -19,7 +19,7 @@ $ RELEASE_IMAGE=$(./openshift-install version | awk '/release image/ {print $3}'
 
 $ CCO_IMAGE=$(oc adm release info --image-for='cloud-credential-operator' $RELEASE_IMAGE)
 
-$ oc image extract $CCO_IMAGE --file="/usr/bin/ccoctl" -a pull-secret
+$ oc image extract $CCO_IMAGE --file="/usr/bin/ccoctl" -a <pull-secret-file-name>
 
 $ chmod 775 ccoctl
 
