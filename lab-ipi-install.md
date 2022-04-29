@@ -10,7 +10,10 @@
 ## Create the IBM Cloud Internet Services Instance
 ## Create a VPC + RHEL Jumpbox / Bastion VSI (RHEL)
 ## Create the required IBM IAM access policies
-TBD - Need to define the minimum set of IAM permissions - official docs are not sufficient.
+
+In addition to the documented IAM policies we need:
+- Admin on resource group (to be able to assign viewer policy)
+- Admin on Internet Services in account
 
 ## Configure IAM for IBM Cloud
 ### Obtain the ccoctl binary
