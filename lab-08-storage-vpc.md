@@ -21,9 +21,7 @@ Make sure everytime you create resources that you
 
 https://cloudnative101.dev/lectures/kube-state-persistence/
 
-https://cloud.ibm.com/docs/containers?topic=containers-file_storage#file_storageclass_reference
-
-https://cloud.ibm.com/docs/containers?topic=containers-file_storage
+https://cloud.ibm.com/docs/containers?topic=containers-vpc-block
 
 ## Challenges to be solved
 
