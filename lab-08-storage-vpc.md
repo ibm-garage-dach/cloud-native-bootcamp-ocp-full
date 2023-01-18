@@ -19,9 +19,8 @@ Make sure everytime you create resources that you
 
 ## Supporting Information
 
-https://cloudnative101.dev/lectures/kube-state-persistence/
-
 https://cloud.ibm.com/docs/containers?topic=containers-vpc-block
+https://cloudnative101.dev/lectures/kube-state-persistence/
 
 ## Challenges to be solved
 
@@ -43,7 +42,6 @@ spec:
   storageClassName: <add storage class>
   accessModes:
     - <add access mode>
-  volumeMode: <add volume mode>
   resources:
     requests:
       storage: <add capacity>
